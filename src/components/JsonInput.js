@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { FloatingLabel, Form, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 const JsonInput = ({ setJson }) => {
   const jsonRef = useRef('')
@@ -9,14 +9,14 @@ const JsonInput = ({ setJson }) => {
   }
   return (
     <div>
-      <FloatingLabel controlId="floatingTextarea2" label="Paste JSON here">
-        <Form.Control
-          as="textarea"
-          placeholder="Paste JSON here"
-          style={{ height: '500px' }}
-          ref={jsonRef}
-        />
-      </FloatingLabel>
+      <Form.Control
+        as="textarea"
+        placeholder="Paste JSON here"
+        className="font-monospace bg-secondary text-white"
+        spellCheck="false"
+        style={{ height: '500px', fontSize: '0.8rem'}}
+        ref={jsonRef}
+      />    
       <Button className="float-end mt-3" onClick={handleSubmit}>Convert</Button>
     </div>
   )

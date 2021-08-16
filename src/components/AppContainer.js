@@ -8,11 +8,12 @@ import { jsonToObjConverter } from '../utils/jsonToObjConverter'
 const AppContainer = () => {
   const [json, setJson] = useState('')
   const [obj, setObj] = useState(json)
+  const [singleQuotes, setSingleQuotes] = useState(true)
   
   useEffect(() => {
-    const object = jsonToObjConverter(json)
+    const object = jsonToObjConverter(json, singleQuotes)
     setObj(object)
-  }, [json])
+  }, [json, singleQuotes])
   
   return (
     <Container>
@@ -22,7 +23,11 @@ const AppContainer = () => {
           <JsonInput setJson={setJson}/>
         </div>
         <div className="col-md-6">
-          <ObjOutput obj={obj}/>
+          <ObjOutput 
+            obj={obj}
+            singleQuotes={singleQuotes}
+            setSingleQuotes={setSingleQuotes}
+          />
         </div>
       </div>
     </Container>
