@@ -1,6 +1,11 @@
-$primary: #474e85;
+$primary: #3684CC;
+$secondary: #1F2937;
 @import "bootstrap/scss/bootstrap";
 
 body {
-  background-color: #282c34;
+  background-color: #1A202C;
+}
+
+textarea::selection {
+  background: #000;
 }

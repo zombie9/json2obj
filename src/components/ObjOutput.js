@@ -1,9 +1,12 @@
 import React from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap'
 
-const ObjOutput = ({ obj, singleQuotes, setSingleQuotes }) => {
-  const handleClick = () => {
+const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }) => {
+  const handleChangeQuotes = () => {
     setSingleQuotes(!singleQuotes)
+  }
+  const handleChangeIndent = () => {
+    setTwoSpace(!twoSpace)
   }
   return (
     <>      
@@ -17,26 +20,49 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes }) => {
         readOnly
       />
       <div className="d-flex flex-row justify-content-between">
-        <Form>
-          <div key="inline-radio" className="text-white mt-2">
-            <Form.Check
-              label="Single Quotes"
-              name="quotes"
-              type="radio"
-              id="radio-1"
-              checked={singleQuotes}
-              onChange={handleClick}
-            />
-            <Form.Check
-              label="Double Quotes"
-              name="quotes"
-              type="radio"
-              id="radio-2"
-              checked={!singleQuotes}
-              onChange={handleClick}
-            />
-          </div>
-        </Form>
+        <div className="border border-white rounded mt-3 p-3 bg-secondary small">
+          <Form className="d-inline-block me-5">
+            <div key="inline-radio" className="text-white">
+              <Form.Check
+                label="Single quotes"
+                name="quotes"
+                type="radio"
+                id="radio-1"
+                checked={singleQuotes}
+                onChange={handleChangeQuotes}
+              />
+              <Form.Check
+                label="Double quotes"
+                name="quotes"
+                type="radio"
+                id="radio-2"
+                checked={!singleQuotes}
+                onChange={handleChangeQuotes}
+              />
+            </div>
+          </Form>
+          <Form className="d-inline-block">
+            <div key="inline-radio" className="text-white">
+              <Form.Check
+                label="2-Space indent"
+                name="quotes"
+                type="radio"
+                id="radio-1"
+                checked={twoSpace}
+                onChange={handleChangeIndent}
+              />
+              <Form.Check
+                label="4-space indent"
+                name="quotes"
+                type="radio"
+                id="radio-2"
+                checked={!twoSpace}
+                onChange={handleChangeIndent}
+              />
+            </div>
+          </Form>
+        </div>
+        
         <Button 
           style={{ height: 'min-content' }} 
           className="mt-3"

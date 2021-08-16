@@ -9,11 +9,12 @@ const AppContainer = () => {
   const [json, setJson] = useState('')
   const [obj, setObj] = useState(json)
   const [singleQuotes, setSingleQuotes] = useState(true)
+  const [twoSpace, setTwoSpace] = useState(true)
   
   useEffect(() => {
-    const object = jsonToObjConverter(json, singleQuotes)
+    const object = jsonToObjConverter(json, singleQuotes, twoSpace)
     setObj(object)
-  }, [json, singleQuotes])
+  }, [json, singleQuotes, twoSpace])
   
   return (
     <Container>
@@ -27,6 +28,8 @@ const AppContainer = () => {
             obj={obj}
             singleQuotes={singleQuotes}
             setSingleQuotes={setSingleQuotes}
+            twoSpace={twoSpace}
+            setTwoSpace={setTwoSpace}
           />
         </div>
       </div>

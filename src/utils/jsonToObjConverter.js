@@ -1,10 +1,10 @@
 import stringifyObject from "stringify-object"
 
-export const jsonToObjConverter = (json, singleQuotes) => {
+export const jsonToObjConverter = (json, singleQuotes, twoSpace) => {
   if (!json) return
   const object = JSON.parse(json)
   const prettyObject = stringifyObject(object, {
-    indent: '  ',
+    indent: twoSpace ? '  ' : '    ',
     singleQuotes: singleQuotes
   })
   return prettyObject

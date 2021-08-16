@@ -2,9 +2,13 @@ import React from 'react'
 
 const AppHeader = () => {
   return (
-    <div>
-      <h1 className="text-white mb-5 mt-3">json2obj</h1>
-    </div>
+    <>
+      <h1 className="mb-4 mt-3">
+        <span className="text-primary">json</span>
+        <span className="text-white">2</span>
+        <span className="text-primary">obj</span>
+      </h1>
+    </>
   )
 }
 

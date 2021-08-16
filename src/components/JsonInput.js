@@ -8,7 +8,7 @@ const JsonInput = ({ setJson }) => {
     setJson(json)
   }
   return (
-    <div>
+    <div className="mb-3">
       <Form.Control
         as="textarea"
         placeholder="Paste JSON here"
@@ -17,7 +17,7 @@ const JsonInput = ({ setJson }) => {
         style={{ height: '500px', fontSize: '0.8rem'}}
         ref={jsonRef}
       />    
-      <Button className="float-end mt-3" onClick={handleSubmit}>Convert</Button>
+      <Button className="mt-3" onClick={handleSubmit}>Convert</Button>
     </div>
   )
 }
