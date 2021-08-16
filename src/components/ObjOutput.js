@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Card } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }) => {
   const handleChangeQuotes = () => {
@@ -20,7 +20,7 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
         readOnly
       />
       <div className="d-flex flex-row justify-content-between">
-        <div className="border border-white rounded mt-3 p-3 bg-secondary small">
+        <div className="border border-white rounded mt-3 me-3 px-3 py-2 bg-secondary small">
           <Form className="d-inline-block me-5">
             <div key="inline-radio" className="text-white">
               <Form.Check
