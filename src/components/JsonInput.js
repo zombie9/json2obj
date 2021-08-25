@@ -7,6 +7,9 @@ const JsonInput = ({ setJson }) => {
     const json = jsonRef.current.value
     setJson(json)
   }
+  const handleClear = () => {
+    jsonRef.current.value = ''
+  }
   return (
     <div className="mb-3">
       <Form.Control
@@ -16,8 +19,11 @@ const JsonInput = ({ setJson }) => {
         spellCheck="false"
         style={{ height: '500px', fontSize: '0.8rem'}}
         ref={jsonRef}
-      />    
-      <Button className="mt-3" onClick={handleSubmit}>Convert</Button>
+      />
+      <div className="mt-3 d-flex flex-row">
+        <Button className="me-3" onClick={handleSubmit}>Convert</Button>
+        <Button className="me-3" onClick={handleClear}>Clear</Button>
+      </div>     
     </div>
   )
 }

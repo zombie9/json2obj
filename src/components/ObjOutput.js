@@ -27,7 +27,6 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
                 label="Single quotes"
                 name="quotes"
                 type="radio"
-                id="radio-1"
                 checked={singleQuotes}
                 onChange={handleChangeQuotes}
               />
@@ -35,7 +34,6 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
                 label="Double quotes"
                 name="quotes"
                 type="radio"
-                id="radio-2"
                 checked={!singleQuotes}
                 onChange={handleChangeQuotes}
               />
@@ -47,7 +45,6 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
                 label="2-Space indent"
                 name="quotes"
                 type="radio"
-                id="radio-1"
                 checked={twoSpace}
                 onChange={handleChangeIndent}
               />
@@ -55,7 +52,6 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
                 label="4-space indent"
                 name="quotes"
                 type="radio"
-                id="radio-2"
                 checked={!twoSpace}
                 onChange={handleChangeIndent}
               />
