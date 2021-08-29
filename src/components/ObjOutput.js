@@ -17,7 +17,7 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
   }
   useEffect(() => {
     setCopied(false)
-  }, [obj])
+  }, [obj, singleQuotes, twoSpace])
 
   return (
     <>      
@@ -75,8 +75,7 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
           </Form>
         </div>
         
-        <Button 
-          style={{ height: 'min-content' }} 
+        <Button
           className="mt-3"
           disabled={copied}
           onClick={() => {

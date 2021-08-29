@@ -21,9 +21,9 @@ const JsonInput = ({ setJson, error }) => {
         ref={jsonRef}
       />
       <div className="mt-3 d-flex flex-row">
-        <Button style={{ height: 'min-content' }} className="me-3" onClick={handleSubmit}>Convert</Button>
-        <Button style={{ height: 'min-content' }} className="me-3" onClick={handleClear}>Clear</Button>
-        {error && <Alert style={{padding: '0.375rem 0.75rem' }} variant="danger">Please Enter Valid JSON</Alert>}
+        <Button className="me-3" onClick={handleSubmit}>Convert</Button>
+        <Button className="me-3" onClick={handleClear}>Clear</Button>
+        {error && <Alert variant="danger">Please Enter Valid JSON</Alert>}
       </div>     
     </div>
   )
