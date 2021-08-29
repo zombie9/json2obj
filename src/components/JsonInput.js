@@ -15,9 +15,8 @@ const JsonInput = ({ setJson, error }) => {
       <Form.Control
         as="textarea"
         placeholder="Paste JSON here"
-        className="font-monospace bg-secondary text-white"
+        className="bg-secondary text-white"
         spellCheck="false"
-        style={{ height: '500px', fontSize: '12px'}}
         ref={jsonRef}
       />
       <div className="mt-3 d-flex flex-row">

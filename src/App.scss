@@ -6,6 +6,13 @@ body {
   background-color: #1A202C;
 }
 
+textarea {
+  font-family: monospace;
+  font-size: 13px !important;
+  height: 500px;
+  resize: none;
+}
+
 textarea::selection {
   background: #383D56;
 }
