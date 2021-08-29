@@ -1,5 +1,5 @@
 $primary: #3684CC;
-$secondary: #1F2937;
+$secondary: #292D3E;
 @import "bootstrap/scss/bootstrap";
 
 body {
@@ -8,4 +8,15 @@ body {
 
 textarea::selection {
   background: #000;
+}
+
+.CodeMirror {
+  height: 500px !important;
+  border: 1px solid white !important;
+  border-radius: 0.25rem !important;
+  font-size: 13px;
+}
+
+.mirrorSelection {
+  background-color: #000;
 }

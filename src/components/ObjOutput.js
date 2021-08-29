@@ -1,24 +1,40 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/theme/material-palenight.css'
+import 'codemirror/mode/javascript/javascript'
+import { Controlled as CodeMirror } from 'react-codemirror2-react-17'
 
 const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }) => {
+  const [editor, setEditor] = useState()
+  const [copied, setCopied] = useState(false)
+  const codeMirrorRef = useRef()
   const handleChangeQuotes = () => {
     setSingleQuotes(!singleQuotes)
   }
   const handleChangeIndent = () => {
     setTwoSpace(!twoSpace)
   }
+  useEffect(() => {
+    setCopied(false)
+  }, [obj])
+
   return (
     <>      
-      <Form.Control
-        as="textarea"
+      <CodeMirror
         id="obj"
-        placeholder="Javascript Object here"
-        className="font-monospace bg-secondary text-white"
-        style={{ height: '500px', fontSize: '0.8rem'}}
+        ref={codeMirrorRef}
         value={obj}
-        readOnly
+        className="code-mirror-wrapper"
+        editorDidMount={editor => setEditor(editor)}
+        options={{
+          lineWrapping: true,
+          mode: 'javascript',
+          theme: 'material-palenight',
+          lineNumbers: true
+        }}
       />
+      
       <div className="d-flex flex-row justify-content-between">
         <div className="border border-white rounded mt-3 me-3 px-3 py-2 bg-secondary small">
           <Form className="d-inline-block me-5">
@@ -62,11 +78,16 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
         <Button 
           style={{ height: 'min-content' }} 
           className="mt-3"
+          disabled={copied}
           onClick={() => {
-            document.getElementById('obj').select();
-            document.execCommand('copy');
+            editor.execCommand('selectAll')
+            console.log(editor.doc.size)
+            navigator.clipboard.writeText(obj)
+            setCopied(true)
           }}
-        >Copy</Button>
+        >
+          {copied ? 'Copied' : 'Copy'}
+        </Button>
       </div>     
     </>
   )
