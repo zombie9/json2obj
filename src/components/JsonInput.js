@@ -15,7 +15,7 @@ const JsonInput = ({ setJson, error }) => {
       <Form.Control
         as="textarea"
         placeholder="Paste JSON here"
-        className="bg-secondary text-white"
+        className="bg-secondary"
         spellCheck="false"
         ref={jsonRef}
       />
