@@ -38,3 +38,7 @@ button {
   width: 100%;
   text-align: center;
 }
+
+.switchButton:hover {
+  fill: $primary;
+}
