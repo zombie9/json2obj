@@ -1,16 +1,20 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material-palenight.css'
 import 'codemirror/mode/javascript/javascript'
 import { Controlled as CodeMirror } from 'react-codemirror2-react-17'
-import { Context } from '../utils/Context'
 
-const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }) => {
-  const { json2obj } = useContext(Context)
+const Output = ({ 
+  output, 
+  singleQuotes, 
+  setSingleQuotes, 
+  twoSpace, 
+  setTwoSpace,
+  isJsonToObj 
+}) => {
   const [editor, setEditor] = useState()
   const [copied, setCopied] = useState(false)
-  const codeMirrorRef = useRef()
   const handleChangeQuotes = () => {
     setSingleQuotes(!singleQuotes)
   }
@@ -19,14 +23,13 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
   }
   useEffect(() => {
     setCopied(false)
-  }, [obj, singleQuotes, twoSpace])
+  }, [output, singleQuotes, twoSpace])
 
   return (
     <>      
       <CodeMirror
         id="obj"
-        ref={codeMirrorRef}
-        value={obj}
+        value={output}
         className="code-mirror-wrapper"
         editorDidMount={editor => setEditor(editor)}
         options={{
@@ -39,7 +42,7 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
       
       <div className="d-flex flex-row justify-content-between">
         <div className="border border-white rounded mt-3 me-3 px-3 py-2 bg-secondary small">
-            {json2obj && 
+            {isJsonToObj && 
               <Form className="d-inline-block me-5">
                 <div key="inline-radio" className="text-white">
                   <Form.Check
@@ -84,8 +87,7 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
           disabled={copied}
           onClick={() => {
             editor.execCommand('selectAll')
-            console.log(editor.doc.size)
-            navigator.clipboard.writeText(obj)
+            navigator.clipboard.writeText(output)
             setCopied(true)
           }}
         >
@@ -96,4 +98,4 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
   )
 }
 
-export default ObjOutput
+export default Output

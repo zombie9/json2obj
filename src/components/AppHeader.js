@@ -1,15 +1,16 @@
 import React from 'react'
 
-const AppHeader = ({ json2obj, setJson2obj }) => {
+const AppHeader = ({ isJsonToObj, setIsJsonToObj, setError }) => {
   const handleSwitch = () => {
-    setJson2obj(!json2obj)
+    setIsJsonToObj(!isJsonToObj)
+    setError(false)
   }
   return (
     <h1 className="mb-4 mt-3">
       <span>
-        <span className="text-primary">{json2obj ? 'json' : 'obj'}</span>
+        <span className="text-primary">{isJsonToObj ? 'json' : 'obj'}</span>
         <span className="text-white">2</span>
-        <span className="text-primary">{json2obj ? 'obj' : 'json'}</span>
+        <span className="text-primary">{isJsonToObj ? 'obj' : 'json'}</span>
         <span className="text-white ms-2"></span>
       </span>
       <span>

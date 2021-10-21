@@ -1,51 +1,53 @@
 import React, { useState, useEffect } from 'react'
 import AppHeader from './AppHeader'
 import { Container } from 'react-bootstrap'
-import JsonInput from './JsonInput'
-import ObjOutput from './ObjOutput'
+import Input from './Input'
+import Output from './Output'
 import { jsonToObjConverter } from '../utils/jsonToObjConverter'
 import { objToJsonConverter } from '../utils/objToJsonConverter'
-import { Context } from '../utils/Context'
 
 const AppContainer = () => {
-  const [json, setJson] = useState('')
-  const [jsonError, setJsonError] = useState(false)
-  const [obj, setObj] = useState(json)
+  const [input, setInput] = useState('')
+  const [output, setOutput] = useState(input)
+  const [error, setError] = useState(false)
   const [singleQuotes, setSingleQuotes] = useState(true)
   const [twoSpace, setTwoSpace] = useState(true)
-  const [json2obj, setJson2obj] = useState(true)
+  const [isJsonToObj, setIsJsonToObj] = useState(true)
   
   useEffect(() => {
-    if (json2obj) {
-      const object = jsonToObjConverter(json, singleQuotes, twoSpace, setJsonError)
-      !!object && setObj(object)
-    }
-    if (!json2obj) {
-      const object = objToJsonConverter(json, twoSpace, setJsonError)
-      !!object && setObj(object)
-    }
-  }, [json2obj, json, singleQuotes, twoSpace])
+    const converted = isJsonToObj 
+      ? jsonToObjConverter(input, singleQuotes, twoSpace, setError) 
+      : objToJsonConverter(input, twoSpace, setError)
+    !!converted && setOutput(converted)
+  }, [isJsonToObj, input, singleQuotes, twoSpace])
   
   return (
-    <Context.Provider value={{json2obj}}>
-      <Container>
-        <AppHeader json2obj={json2obj} setJson2obj={setJson2obj} />
-        <div className="row">
-          <div className="col-md-6">
-            <JsonInput error={jsonError} setJson={setJson}/>
-          </div>
-          <div className="col-md-6">
-            <ObjOutput 
-              obj={obj}
-              singleQuotes={singleQuotes}
-              setSingleQuotes={setSingleQuotes}
-              twoSpace={twoSpace}
-              setTwoSpace={setTwoSpace}
-            />
-          </div>
+    <Container>
+      <AppHeader 
+        isJsonToObj={isJsonToObj} 
+        setIsJsonToObj={setIsJsonToObj} 
+        setError={setError} 
+      />
+      <div className="row">
+        <div className="col-md-6">
+          <Input 
+            error={error} 
+            setError={setError} 
+            setInput={setInput}
+          />
         </div>
-      </Container>
-    </Context.Provider>
+        <div className="col-md-6">
+          <Output 
+            output={output}
+            singleQuotes={singleQuotes}
+            setSingleQuotes={setSingleQuotes}
+            twoSpace={twoSpace}
+            setTwoSpace={setTwoSpace}
+            isJsonToObj={isJsonToObj}
+          />
+        </div>
+      </div>
+    </Container>
   )
 }
 

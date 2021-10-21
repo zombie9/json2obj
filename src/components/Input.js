@@ -1,26 +1,21 @@
-import React, { useRef, useContext, useState } from 'react'
-import { Form, Button, Alert } from 'react-bootstrap'
-import { Context } from '../utils/Context'
+import React, { useState } from 'react'
+import { Button, Alert } from 'react-bootstrap'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material-palenight.css'
 import 'codemirror/mode/javascript/javascript'
 import { Controlled as CodeMirror } from 'react-codemirror2-react-17'
 
-const JsonInput = ({ setJson, error }) => {
+const Input = ({ setInput, error, setError }) => {
   const [value, setValue] = useState()
-  const jsonRef = useRef('')
-  const handleSubmit = () => {
-    console.log(typeof(value))
-    setJson(value)
-  }
+
   const handleClear = () => {
     setValue('')
+    setError(false)
   }
   return (
     <div className="mb-3">
       <CodeMirror
         id="obj"
-        ref={jsonRef}
         value={value}
         className="code-mirror-wrapper"
         onBeforeChange={(_, __, value) => {
@@ -34,7 +29,7 @@ const JsonInput = ({ setJson, error }) => {
         }}
       />
       <div className="mt-3 d-flex flex-row">
-        <Button className="me-3" onClick={handleSubmit}>Convert</Button>
+        <Button className="me-3" onClick={() => setInput(value)}>Convert</Button>
         <Button className="me-3" onClick={handleClear}>Clear</Button>
         {error && <Alert variant="danger">{error.message}</Alert>}
       </div>     
@@ -42,4 +37,4 @@ const JsonInput = ({ setJson, error }) => {
   )
 }
 
-export default JsonInput
+export default Input
