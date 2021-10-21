@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap'
 import JsonInput from './JsonInput'
 import ObjOutput from './ObjOutput'
 import { jsonToObjConverter } from '../utils/jsonToObjConverter'
+import { objToJsonConverter } from '../utils/objToJsonConverter'
 import { Context } from '../utils/Context'
 
 const AppContainer = () => {
@@ -15,12 +16,18 @@ const AppContainer = () => {
   const [json2obj, setJson2obj] = useState(true)
   
   useEffect(() => {
-    const object = jsonToObjConverter(json, singleQuotes, twoSpace, setJsonError)
-    !!object && setObj(object)
-  }, [json, singleQuotes, twoSpace])
+    if (json2obj) {
+      const object = jsonToObjConverter(json, singleQuotes, twoSpace, setJsonError)
+      !!object && setObj(object)
+    }
+    if (!json2obj) {
+      const object = objToJsonConverter(json, twoSpace, setJsonError)
+      !!object && setObj(object)
+    }
+  }, [json2obj, json, singleQuotes, twoSpace])
   
   return (
-    <Context.Provider value={json2obj}>
+    <Context.Provider value={{json2obj}}>
       <Container>
         <AppHeader json2obj={json2obj} setJson2obj={setJson2obj} />
         <div className="row">

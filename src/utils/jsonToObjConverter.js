@@ -10,7 +10,7 @@ export const jsonToObjConverter = (json, singleQuotes, twoSpace, setJsonError) =
     })
     setJsonError(false)
     return prettyObject
-  } catch (e) {
-    setJsonError(true)
+  } catch (error) {
+    setJsonError({message: 'Please enter valid JSON'})
   }
 }

@@ -1,11 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useContext } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material-palenight.css'
 import 'codemirror/mode/javascript/javascript'
 import { Controlled as CodeMirror } from 'react-codemirror2-react-17'
+import { Context } from '../utils/Context'
 
 const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }) => {
+  const { json2obj } = useContext(Context)
   const [editor, setEditor] = useState()
   const [copied, setCopied] = useState(false)
   const codeMirrorRef = useRef()
@@ -37,24 +39,26 @@ const ObjOutput = ({ obj, singleQuotes, setSingleQuotes, twoSpace, setTwoSpace }
       
       <div className="d-flex flex-row justify-content-between">
         <div className="border border-white rounded mt-3 me-3 px-3 py-2 bg-secondary small">
-          <Form className="d-inline-block me-5">
-            <div key="inline-radio" className="text-white">
-              <Form.Check
-                label="Single quotes"
-                name="quotes"
-                type="radio"
-                checked={singleQuotes}
-                onChange={handleChangeQuotes}
-              />
-              <Form.Check
-                label="Double quotes"
-                name="quotes"
-                type="radio"
-                checked={!singleQuotes}
-                onChange={handleChangeQuotes}
-              />
-            </div>
-          </Form>
+            {json2obj && 
+              <Form className="d-inline-block me-5">
+                <div key="inline-radio" className="text-white">
+                  <Form.Check
+                    label="Single quotes"
+                    name="quotes"
+                    type="radio"
+                    checked={singleQuotes}
+                    onChange={handleChangeQuotes}
+                  />
+                  <Form.Check
+                    label="Double quotes"
+                    name="quotes"
+                    type="radio"
+                    checked={!singleQuotes}
+                    onChange={handleChangeQuotes}
+                  />
+                </div>
+              </Form>
+            }       
           <Form className="d-inline-block">
             <div key="inline-radio" className="text-white">
               <Form.Check
