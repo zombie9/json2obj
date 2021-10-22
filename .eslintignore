@@ -1,0 +1,12 @@
+**/node_modules
+apps/*/dist
+apps/*/lib
+dist
+coverage
+reports
+**/story.js
+**/story/*
+public
+build
+internals/generator-app/**/*/templates
+.eslinrc

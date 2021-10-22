@@ -1,0 +1,8 @@
+**/node_modules
+apps/*/dist
+apps/*/lib
+certs
+coverage
+dist
+reports
+storybook-static
