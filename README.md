@@ -1,6 +1,6 @@
 ## json2obj
 
-A simple React app that converts JSON objects to Javascript objects.
+A simple React app that converts JSON to Javascript objects and vice versa.
 
 Output options:
 - single or double quotes
